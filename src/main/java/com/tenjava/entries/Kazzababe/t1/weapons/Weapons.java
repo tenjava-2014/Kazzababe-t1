@@ -8,7 +8,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 public enum Weapons {
 	TRAINING_SWORD("Training Sword", "The most basic of swords", Material.WOOD_SWORD, WeaponInfo.TRAINING_SWORD, ResourceSet.TRAINING_SWORD, WeaponType.COMMON), 
-	SHORT_SWORD("Short Sword", "Short Sword", Material.IRON_SWORD, WeaponInfo.TRAINING_SWORD, ResourceSet.SHORT_SWORD, WeaponType.COMMON);
+	SHORT_SWORD("Short Sword", "Short Sword", Material.IRON_SWORD, WeaponInfo.SHORT_SWORD, ResourceSet.SHORT_SWORD, WeaponType.COMMON);
 	
 	private String name;
 	private String description;
