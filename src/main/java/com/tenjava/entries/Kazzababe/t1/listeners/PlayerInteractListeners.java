@@ -153,7 +153,6 @@ public class PlayerInteractListeners implements Listener {
 	@EventHandler
 	public void onChunkPopulate(ChunkPopulateEvent event) {
 		for(BlockState tileEntity : event.getChunk().getTileEntities()) {
-			System.out.println(tileEntity.getClass());
 			if(tileEntity instanceof Chest) {
 				Chest chest = (Chest) tileEntity;
 				
@@ -166,7 +165,7 @@ public class PlayerInteractListeners implements Listener {
 						for(int zz = z - 5; zz <= z + 5; zz++) {
 							Block block = tileEntity.getWorld().getBlockAt(xx, yy, zz);
 							if(block.getType() == Material.MOB_SPAWNER) {
-								chest.getBlockInventory().addItem(TenJava.getRandomItemFromLootTable(Weapons.generateLootTable()).getItem());
+								chest.getBlockInventory().addItem(TenJava.getRandomItemFromLootTable(Weapons.generateLootTable()).getItem());System.out.println(x + ":" + y + ":" + z);
 								break;
 							}
 						}

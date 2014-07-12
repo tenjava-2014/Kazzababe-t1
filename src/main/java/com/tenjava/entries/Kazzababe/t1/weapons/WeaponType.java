@@ -3,12 +3,12 @@ package com.tenjava.entries.Kazzababe.t1.weapons;
 import org.bukkit.ChatColor;
 
 public enum WeaponType {
-	COMMON(ChatColor.WHITE, 60), 
-	UNCOMMON(ChatColor.LIGHT_PURPLE, 52), 
-	RARE(ChatColor.RED, 40), 
-	EPIC(ChatColor.GOLD, 30), 
-	MIGHTY(ChatColor.AQUA, 16), 
-	LEGENDARY(ChatColor.YELLOW, 5);
+	COMMON(ChatColor.WHITE, 80), 
+	UNCOMMON(ChatColor.LIGHT_PURPLE, 65), 
+	RARE(ChatColor.RED, 50), 
+	EPIC(ChatColor.GOLD, 40), 
+	MIGHTY(ChatColor.AQUA, 25), 
+	LEGENDARY(ChatColor.YELLOW, 2);
 	
 	private ChatColor color;
 	private int weight;

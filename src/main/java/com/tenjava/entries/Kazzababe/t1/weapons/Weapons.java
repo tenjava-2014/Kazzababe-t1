@@ -18,7 +18,7 @@ public enum Weapons {
 	LONG_SWORD("Long Sword", "Long Sword", Material.IRON_SWORD, WeaponInfo.LONG_SWORD, ResourceSet.LONG_SWORD, WeaponType.COMMON), 
 	MIGHTY_SWORD("Mighty Sword", "The mighty sword of a fallen king", Material.GOLD_SWORD, WeaponInfo.MIGHTY_SWORD, ResourceSet.MIGHTY_SWORD, WeaponType.MIGHTY), 
 	FIERY_SWORD("Fiery Sword", "A sword for those who like to watch the world burn", Material.GOLD_SWORD, WeaponInfo.FIERY_SWORD, ResourceSet.FIERY_SWORD, WeaponType.RARE, new EnchantmentSet(Enchantment.FIRE_ASPECT, 1)), 
-	ADVENTURE_SWORD("Adventureres Sword", "A must have sword for any adventurer", Material.DIAMOND_SWORD, WeaponInfo.ADVENTURE_SWORD, ResourceSet.ADVENTURE_SWORD, WeaponType.EPIC), 
+	ADVENTURE_SWORD("Adventurers Sword", "A must have sword for any adventurer", Material.DIAMOND_SWORD, WeaponInfo.ADVENTURE_SWORD, ResourceSet.ADVENTURE_SWORD, WeaponType.EPIC), 
 	DEFEND_SWORD("Defenders Sword", "Knockback your opponenents and maintain a strong defense", Material.DIAMOND_SWORD, WeaponInfo.DEFEND_SWORD, ResourceSet.DEFEND_SWORD, WeaponType.EPIC, new EnchantmentSet(Enchantment.KNOCKBACK, 3)), 
 	MINECRAFTIA_SWORD("Sword o' Minecraftia", "The legendary sword of Minecraftia", Material.DIAMOND_SWORD, WeaponInfo.MINECRAFTIA_SWORD, ResourceSet.MINECRAFTIA_SWORD, WeaponType.LEGENDARY), 
 	WORN_AXE("Worn Battleaxe", "A weak wooden battle axe", Material.WOOD_AXE, WeaponInfo.WORN_AXE, ResourceSet.WORN_AXE, WeaponType.COMMON), 

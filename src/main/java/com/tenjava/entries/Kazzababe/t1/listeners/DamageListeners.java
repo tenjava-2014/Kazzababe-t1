@@ -23,7 +23,12 @@ public class DamageListeners implements Listener {
 			if(item != null) {
 				Weapons weapon = Weapons.getFromItemStack(item);
 				if(weapon != null) {
-					event.setDamage(weapon.getWeaponInfo().getDamage());
+					if(player.getFoodLevel() <= 4) {
+						event.setDamage(1.0);
+						player.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_DIGGING, 60, 4));
+					} else {
+						event.setDamage(weapon.getWeaponInfo().getDamage());
+					}
 				} else {
 					player.addPotionEffect(new PotionEffect(PotionEffectType.SLOW_DIGGING, 35, 1));
 				}
