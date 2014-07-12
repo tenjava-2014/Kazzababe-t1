@@ -2,12 +2,15 @@ package com.tenjava.entries.Kazzababe.t1.listeners;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.block.BlockState;
+import org.bukkit.block.Chest;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -17,6 +20,7 @@ import org.bukkit.event.inventory.ClickType;
 import org.bukkit.event.inventory.CraftItemEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.world.ChunkPopulateEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -106,6 +110,8 @@ public class PlayerInteractListeners implements Listener {
 								if(have > 1) player.getInventory().removeItem(item2);
 								if(have > 2) player.getInventory().removeItem(item3);
 								player.getInventory().addItem(toCraft);
+							} else {
+								player.sendMessage(ChatColor.RED + "You do not have the required materials to craft this");
 							}
 						}
 					}
@@ -123,6 +129,32 @@ public class PlayerInteractListeners implements Listener {
 	public void onItemCraft(CraftItemEvent event) {
 		if(event.getRecipe().getResult().getType().name().contains("SWORD")) {
 			event.setCancelled(true);
+		}
+	}
+	
+	@EventHandler
+	public void onChunkPopulate(ChunkPopulateEvent event) {
+		for(BlockState tileEntity : event.getChunk().getTileEntities()) {
+			System.out.println(tileEntity.getClass());
+			if(tileEntity instanceof Chest) {
+				Chest chest = (Chest) tileEntity;
+				
+				int x = tileEntity.getX();
+				int y = tileEntity.getY();
+				int z = tileEntity.getZ();
+				
+				for(int xx = x - 5; xx <= x + 5; xx++) {
+					for(int yy = y - 5; yy <= y + 5; yy++) {
+						for(int zz = z - 5; zz <= z + 5; zz++) {
+							Block block = tileEntity.getWorld().getBlockAt(xx, yy, zz);
+							if(block.getType() == Material.MOB_SPAWNER) {
+								chest.getBlockInventory().addItem(Weapons.values()[new Random().nextInt(Weapons.values().length)].getItemStack());
+								break;
+							}
+						}
+					}
+				}
+			}
 		}
 	}
 	
