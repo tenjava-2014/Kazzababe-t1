@@ -65,7 +65,10 @@ public enum Weapons {
 	
 	public static Weapons getFromItemStack(ItemStack item) {
 		for(Weapons weapon : values()) {
-			if(weapon.getItemStack().equals(item)) {
+			ItemStack toCompare = weapon.getItemStack().clone();
+			toCompare.setDurability(item.getDurability());
+			
+			if(toCompare.equals(item)) {
 				return weapon;
 			}
 		}
