@@ -38,3 +38,4 @@ The goal:
 - The goal of this plugin was to add a diablo-esque weapons crafting system to Minecraft and I feel as if I've achieved what I was going for.
 Weapons can be crafted using an anvil, and when attempting to attack without a weapon that is able to be crafted through the anvil, you will receive mining fatigue which makes fighting with
 non-this plugin weapons less viable. Also, fighting with low hunger (4 or less), you will only do one damage and will receive mining fatigue.
+- Also dungeon chests each get a random weapon from this plugin, better weapons have a lower chance of spawning
