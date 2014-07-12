@@ -1,10 +1,13 @@
 package com.tenjava.entries.Kazzababe.t1;
 
+import java.util.List;
+
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import com.tenjava.entries.Kazzababe.t1.listeners.DamageListeners;
 import com.tenjava.entries.Kazzababe.t1.listeners.PlayerInteractListeners;
+import com.tenjava.entries.Kazzababe.t1.weapons.Loot;
 
 public class TenJava extends JavaPlugin {
 	/*
@@ -37,5 +40,23 @@ public class TenJava extends JavaPlugin {
 		itemOne.setDurability(item2.getDurability());
 		
 		return itemOne.equals(itemTwo);
+	}
+	
+	public static Loot getRandomItemFromLootTable(List<Loot> lootTable) {
+		double totalWeight = 0;
+		for(Loot loot : lootTable) {
+			totalWeight += loot.getWeight();
+		}
+		
+		double threshold = Math.random() * totalWeight;
+		double currentWeight = 0;
+		
+		for(Loot loot : lootTable) {
+			currentWeight += loot.getWeight();
+			if(currentWeight >= threshold) {
+				return loot;
+			}
+		}
+		return null;
 	}
 }

@@ -2,7 +2,6 @@ package com.tenjava.entries.Kazzababe.t1.listeners;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
@@ -25,6 +24,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import com.tenjava.entries.Kazzababe.t1.TenJava;
 import com.tenjava.entries.Kazzababe.t1.weapons.Weapons;
 
 public class PlayerInteractListeners implements Listener {
@@ -166,7 +166,7 @@ public class PlayerInteractListeners implements Listener {
 						for(int zz = z - 5; zz <= z + 5; zz++) {
 							Block block = tileEntity.getWorld().getBlockAt(xx, yy, zz);
 							if(block.getType() == Material.MOB_SPAWNER) {
-								chest.getBlockInventory().addItem(Weapons.values()[new Random().nextInt(Weapons.values().length)].getItemStack());
+								chest.getBlockInventory().addItem(TenJava.getRandomItemFromLootTable(Weapons.generateLootTable()).getItem());
 								break;
 							}
 						}
