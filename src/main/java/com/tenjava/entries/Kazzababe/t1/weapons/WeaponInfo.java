@@ -3,6 +3,8 @@ package com.tenjava.entries.Kazzababe.t1.weapons;
 public class WeaponInfo {
 	protected static final WeaponInfo TRAINING_SWORD = new WeaponInfo(1.0, 0.75, 1.0);
 	protected static final WeaponInfo SHORT_SWORD = new WeaponInfo(2.5, 0.90, 1.15);
+	protected static final WeaponInfo LONG_SWORD = new WeaponInfo(4, 0.8, 1.5);
+	protected static final WeaponInfo MINECRAFTIA_SWORD = new WeaponInfo(22, 0.8, 1.5);
 	
 	private double damage;
 	private double swingSpeed;
