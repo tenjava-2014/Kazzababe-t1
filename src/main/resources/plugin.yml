@@ -1,3 +1,4 @@
 name: Kazzababe-t1
 main: com.tenjava.entries.Kazzababe.t1.TenJava
 version: '${project.version}'
+description: TenJava entry
