@@ -46,11 +46,16 @@ public class PlayerInteractListeners implements Listener {
 				this.anvilInventories.put(id, this.generateNewAnvilInventory());
 				Inventory inventory = this.anvilInventories.get(id);
 				
-				for(int i = 0; i < Weapons.values().length; i++) {
-					inventory.addItem(Weapons.values()[i].getItemStack());
-				}
+				this.updatePage(player);
 				
 				player.openInventory(inventory);
+			}
+		} else if(action == Action.LEFT_CLICK_BLOCK) {
+			if(event.getItem() != null) {
+				Weapons weapon = Weapons.getFromItemStack(event.getItem());
+				if(weapon != null) {
+					event.setCancelled(true);
+				}
 			}
 		}
 	}
@@ -68,11 +73,10 @@ public class PlayerInteractListeners implements Listener {
 					ItemStack currentItem = event.getCurrentItem();
 					
 					int slot = event.getRawSlot();
-					if((slot >= 10 && slot <= 16) || (slot >= 19 && slot <= 25)) {
+					if((slot >= 10 && slot <= 15) || (slot >= 19 && slot <= 24)) {
 						if(currentItem.getType() != Material.AIR) {
 							inventory.setItem(37, currentItem.clone());
-							int item = slot - 10 - (slot > 18? (int) Math.floor(slot / 9.0) : 0);
-							Weapons weapon = Weapons.values()[item];
+							Weapons weapon = Weapons.getFromItemStack(currentItem);
 							
 							this.updateResourcesSet(player, weapon);
 						} else {
@@ -114,6 +118,20 @@ public class PlayerInteractListeners implements Listener {
 								player.sendMessage(ChatColor.RED + "You do not have the required materials to craft this");
 							}
 						}
+					} else if(slot == 16) {
+						//Navigate left
+						ItemStack pageItem = inventory.getItem(0);
+						if(pageItem.getAmount() - 1 > 0) {
+							pageItem.setAmount(pageItem.getAmount() - 1);
+						}
+						this.updatePage(player);
+					} else if(slot == 25) {
+						//Navigate right
+						ItemStack pageItem = inventory.getItem(0);
+						if(Weapons.values().length > pageItem.getAmount() * 12) {
+							pageItem.setAmount(pageItem.getAmount() + 1);
+						}
+						this.updatePage(player);
 					}
 					if(slot <= 53 && slot >= 0) {
 						event.setCancelled(true);
@@ -158,9 +176,31 @@ public class PlayerInteractListeners implements Listener {
 		}
 	}
 	
+	private void updatePage(Player player) {
+		UUID id = player.getUniqueId();
+		Inventory inventory = this.anvilInventories.get(id);
+		
+		int page = inventory.getItem(0).getAmount();
+		
+		for(int i = 10; i <= 15; i++) {
+			inventory.setItem(i, null);
+		}
+		for(int i = 19; i <= 24; i++) {
+			inventory.setItem(i, null);
+		}
+		
+		for(int i = (page - 1) * 12; i < Math.min(page * 12, Weapons.values().length); i++) {
+			inventory.addItem(Weapons.values()[i].getItemStack());
+		}
+	}
+	
 	private void updateResourcesSet(Player player, Weapons weapon) {
 		UUID id = player.getUniqueId();
 		Inventory inventory = this.anvilInventories.get(id);
+		
+		inventory.setItem(39, null);
+		inventory.setItem(40, null);
+		inventory.setItem(41, null);
 
 		if(weapon.getResources().getItem1() != null) {
 			inventory.setItem(39, weapon.getResources().getItem1().clone());
@@ -194,8 +234,30 @@ public class PlayerInteractListeners implements Listener {
 		inventory.setItem(42, this.getFillerItemStack());
 		inventory.setItem(43, new ItemStack(Material.WORKBENCH));
 		inventory.setItem(44, this.getFillerItemStack());
+		inventory.setItem(16, this.getLeftItemStack());
+		inventory.setItem(25, this.getRightItemStack());
 		
 		return inventory;
+	}
+	
+	private ItemStack getLeftItemStack() {
+		ItemStack item = new ItemStack(Material.STAINED_GLASS_PANE);
+		
+		ItemMeta itemMeta = item.getItemMeta();
+		itemMeta.setDisplayName(ChatColor.GREEN + "GO LEFT");
+		item.setItemMeta(itemMeta);
+		
+		return item;
+	}
+	
+	private ItemStack getRightItemStack() {
+		ItemStack item = new ItemStack(Material.STAINED_GLASS_PANE);
+		
+		ItemMeta itemMeta = item.getItemMeta();
+		itemMeta.setDisplayName(ChatColor.GREEN + "GO RIGHT");
+		item.setItemMeta(itemMeta);
+		
+		return item;
 	}
 	
 	private ItemStack getFillerItemStack() {

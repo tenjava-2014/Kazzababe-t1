@@ -8,6 +8,8 @@ public enum ResourceSet {
 	TRAINING_SWORD(new ItemStack(Material.STICK, 10), new ItemStack(Material.WOOD, 15), null), 
 	SHORT_SWORD(new ItemStack(Material.STICK, 20), new ItemStack(Material.IRON_INGOT, 20), null), 
 	LONG_SWORD(new ItemStack(Material.STICK, 22), new ItemStack(Material.IRON_INGOT, 28), null), 
+	MIGHTY_SWORD(new ItemStack(Material.STICK, 25), new ItemStack(Material.GOLD_INGOT, 22), null), 
+	ADVENTURE_SWORD(new ItemStack(Material.STICK, 20), new ItemStack(Material.DIAMOND, 8), null), 
 	MINECRAFTIA_SWORD(new ItemStack(Material.STICK, 80), new ItemStack(Material.DIAMOND, 32), new ItemStack(Material.NETHER_STAR));
 	
 	private ItemStack item1;
