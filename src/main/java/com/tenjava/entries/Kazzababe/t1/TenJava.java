@@ -7,6 +7,11 @@ import com.tenjava.entries.Kazzababe.t1.listeners.DamageListeners;
 import com.tenjava.entries.Kazzababe.t1.listeners.PlayerInteractListeners;
 
 public class TenJava extends JavaPlugin {
+	/*
+	 * TODO: Add more weapons
+	 * TODO: Create an easier way to get anvils
+	 * TODO: Make mobs stronger
+	 */
 	
 	@Override
 	public void onEnable() {
